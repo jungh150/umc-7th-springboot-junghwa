@@ -19,6 +19,7 @@ public class Review extends BaseEntity {
 
     private Float rate;
 
+    @Column(length = 100)
     private String content;
 
     @ManyToOne(fetch = FetchType.LAZY)
