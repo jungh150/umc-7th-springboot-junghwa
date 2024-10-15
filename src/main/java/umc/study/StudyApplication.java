@@ -1,13 +1,13 @@
-package umc.umc_7th_springboot_junghwa;
+package umc.study;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Umc7thSpringbootJunghwaApplication {
+public class StudyApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Umc7thSpringbootJunghwaApplication.class, args);
+		SpringApplication.run(StudyApplication.class, args);
 	}
 
 }
