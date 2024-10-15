@@ -1,6 +1,10 @@
 package umc.study.domain;
 
 import lombok.*;
+import umc.study.domain.common.BaseEntity;
+import umc.study.domain.enums.Gender;
+import umc.study.domain.enums.MemberStatus;
+
 import jakarta.persistence.*;
 import java.time.LocalDate;
 
@@ -18,11 +22,17 @@ public class Member {
 
     private String name;
 
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
+
     private LocalDate birthday;
 
     private String address;
 
     private Integer point;
+
+    @Enumerated(EnumType.STRING)
+    private MemberStatus status;
 
     private LocalDate inactiveDate;
 }
