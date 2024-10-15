@@ -3,10 +3,15 @@ package umc.study.domain;
 import lombok.*;
 import umc.study.domain.common.BaseEntity;
 import umc.study.domain.enums.Gender;
-import umc.study.domain.enums.MemberStatus;
+import umc.study.domain.enums.UserStatus;
+import umc.study.domain.mapping.Review;
+import umc.study.domain.mapping.UserMission;
+import umc.study.domain.mapping.Prefer;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -32,7 +37,16 @@ public class User extends BaseEntity {
     private Integer point;
 
     @Enumerated(EnumType.STRING)
-    private MemberStatus status;
+    private UserStatus status;
 
     private LocalDate inactiveDate;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Prefer> preferList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Review> reviewList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<UserMission> userMissionList = new ArrayList<>();
 }
