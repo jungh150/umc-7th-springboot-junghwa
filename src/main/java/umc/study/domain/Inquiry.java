@@ -4,7 +4,6 @@ import lombok.*;
 import umc.study.domain.common.BaseEntity;
 
 import jakarta.persistence.*;
-import java.time.LocalDate;
 
 @Entity
 @Getter
@@ -20,5 +19,5 @@ public class Inquiry extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
-    private Member member;
+    private User user;
 }
