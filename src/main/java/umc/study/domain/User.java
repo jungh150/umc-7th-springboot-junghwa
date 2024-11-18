@@ -1,6 +1,7 @@
 package umc.study.domain;
 
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 import umc.study.domain.common.BaseEntity;
 import umc.study.domain.enums.Gender;
 import umc.study.domain.enums.UserStatus;
@@ -35,9 +36,13 @@ public class User extends BaseEntity {
 
     private LocalDate birthday;
 
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false, length = 40)
     private String address;
 
+    @Column(nullable = false, length = 40)
+    private String specAddress;
+
+    @ColumnDefault("0")
     private Integer point;
 
     @Enumerated(EnumType.STRING)
