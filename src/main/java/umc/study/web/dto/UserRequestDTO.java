@@ -4,17 +4,17 @@ import lombok.Getter;
 
 import java.util.List;
 
-public class MemberRequestDTO {
+public class UserRequestDTO {
 
     @Getter
-    public static class JoinDto{
+    public static class SignupDto{
         String name;
+        String password;
         Integer gender;
         Integer birthYear;
         Integer birthMonth;
         Integer birthDay;
         String address;
-        String specAddress;
-        List<Long> preferCategory;
+        List<Long> preferList;
     }
 }
