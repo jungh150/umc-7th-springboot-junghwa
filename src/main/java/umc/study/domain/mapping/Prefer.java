@@ -31,4 +31,8 @@ public class Prefer extends BaseEntity {
         this.user = user;
         user.getPreferList().add(this);
     }
+
+    public void setFood(Food food){
+        this.food = food;
+    }
 }
