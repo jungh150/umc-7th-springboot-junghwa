@@ -15,6 +15,7 @@ public class UserRequestDTO {
         Integer birthMonth;
         Integer birthDay;
         String address;
+        String specAddress;
         List<Long> preferList;
     }
 }
