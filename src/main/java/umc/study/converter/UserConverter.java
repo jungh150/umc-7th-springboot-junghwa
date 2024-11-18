@@ -27,6 +27,7 @@ public class UserConverter {
         };
 
         return User.builder()
+                .password(request.getPassword())
                 .address(request.getAddress())
                 .specAddress(request.getSpecAddress())
                 .gender(gender)
