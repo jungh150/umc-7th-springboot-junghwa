@@ -6,7 +6,6 @@ import umc.study.domain.Food;
 import umc.study.domain.common.BaseEntity;
 
 import jakarta.persistence.*;
-import java.time.LocalDate;
 
 @Entity
 @Getter
@@ -25,4 +24,15 @@ public class Prefer extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "food_id")
     private Food food;
+
+    public void setUser(User user){
+        if(this.user != null)
+            user.getPreferList().remove(this);
+        this.user = user;
+        user.getPreferList().add(this);
+    }
+
+    public void setFood(Food food){
+        this.food = food;
+    }
 }
