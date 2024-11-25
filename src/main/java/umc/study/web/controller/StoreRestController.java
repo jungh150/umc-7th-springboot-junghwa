@@ -8,10 +8,12 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 import umc.study.apiPayload.ApiResponse;
 import umc.study.converter.StoreConverter;
 import umc.study.domain.Store;
+import umc.study.domain.mapping.Review;
 import umc.study.service.StoreService.StoreCommandService;
 import umc.study.service.StoreService.StoreQueryService;
 import umc.study.validation.annotation.ExistStores;
@@ -38,8 +40,8 @@ public class StoreRestController {
             @Parameter(name = "storeId", description = "가게의 아이디, path variable 입니다!")
     })
     public ApiResponse<StoreResponseDTO.ReviewPreViewListDTO> getReviewList(@ExistStores @PathVariable(name = "storeId") Long storeId,@RequestParam(name = "page") Integer page){
-        storeQueryService.getReviewList(storeId,page);
-        return null;
+        Page<Review> reviewList = storeQueryService.getReviewList(storeId,page);
+        return ApiResponse.onSuccess(StoreConverter.reviewPreViewListDTO(reviewList));
     }
 
     @PostMapping("/")
