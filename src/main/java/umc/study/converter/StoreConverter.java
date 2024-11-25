@@ -2,10 +2,12 @@ package umc.study.converter;
 
 import umc.study.domain.Region;
 import umc.study.domain.Store;
+import umc.study.domain.mapping.Review;
 import umc.study.web.dto.StoreRequestDTO;
 import umc.study.web.dto.StoreResponseDTO;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class StoreConverter {
 
@@ -24,5 +26,13 @@ public class StoreConverter {
                 .rate(request.getRate())
                 .region(region)
                 .build();
+    }
+
+    public static StoreResponseDTO.ReviewPreViewDTO reviewPreViewDTO(Review review){
+        return null;
+    }
+
+    public static StoreResponseDTO.ReviewPreViewListDTO reviewPreViewListDTO(List<Review> reviewList){
+        return null;
     }
 }
