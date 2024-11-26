@@ -17,4 +17,14 @@ public class UserMissionResponseDTO {
         Long userMissionId;
         LocalDateTime createdAt;
     }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class UpdateUserMissionStatusResultDTO {
+        Long userMissionId;
+        String status;
+        LocalDateTime updatedAt;
+    }
 }
