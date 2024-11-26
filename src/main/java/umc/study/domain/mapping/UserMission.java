@@ -30,4 +30,8 @@ public class UserMission extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "mission_id")
     private Mission mission;
+
+    public void updateStatus(MissionStatus newStatus) {
+        this.status = newStatus;
+    }
 }
