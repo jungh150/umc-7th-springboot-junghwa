@@ -42,7 +42,8 @@ public class StoreConverter {
     public static StoreResponseDTO.StoreReviewListDTO toStoreReviewListDTO(Page<Review> reviewList){
 
         List<StoreResponseDTO.StoreReviewDTO> reviewPreViewDTOList = reviewList.stream()
-                .map(StoreConverter::toStoreReviewDTO).collect(Collectors.toList());
+                .map(StoreConverter::toStoreReviewDTO)
+                .collect(Collectors.toList());
 
         return StoreResponseDTO.StoreReviewListDTO.builder()
                 .isLast(reviewList.isLast())
