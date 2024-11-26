@@ -23,8 +23,8 @@ public class StoreResponseDTO {
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class ReviewPreViewListDTO {
-        List<ReviewPreViewDTO> reviewList;
+    public static class StoreReviewListDTO {
+        List<StoreReviewDTO> reviewList;
         Integer listSize;
         Integer totalPage;
         Long totalElements;
@@ -36,7 +36,7 @@ public class StoreResponseDTO {
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
-    public static class ReviewPreViewDTO {
+    public static class StoreReviewDTO {
         String ownerName;
         Float rate;
         String content;

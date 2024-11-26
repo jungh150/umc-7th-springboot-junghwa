@@ -30,8 +30,8 @@ public class StoreConverter {
                 .build();
     }
 
-    public static StoreResponseDTO.ReviewPreViewDTO reviewPreViewDTO(Review review){
-        return StoreResponseDTO.ReviewPreViewDTO.builder()
+    public static StoreResponseDTO.StoreReviewDTO toStoreReviewDTO(Review review){
+        return StoreResponseDTO.StoreReviewDTO.builder()
                 .ownerName(review.getUser().getName())
                 .rate(review.getRate())
                 .createdAt(review.getCreatedAt())
@@ -39,12 +39,12 @@ public class StoreConverter {
                 .build();
     }
 
-    public static StoreResponseDTO.ReviewPreViewListDTO reviewPreViewListDTO(Page<Review> reviewList){
+    public static StoreResponseDTO.StoreReviewListDTO toStoreReviewListDTO(Page<Review> reviewList){
 
-        List<StoreResponseDTO.ReviewPreViewDTO> reviewPreViewDTOList = reviewList.stream()
-                .map(StoreConverter::reviewPreViewDTO).collect(Collectors.toList());
+        List<StoreResponseDTO.StoreReviewDTO> reviewPreViewDTOList = reviewList.stream()
+                .map(StoreConverter::toStoreReviewDTO).collect(Collectors.toList());
 
-        return StoreResponseDTO.ReviewPreViewListDTO.builder()
+        return StoreResponseDTO.StoreReviewListDTO.builder()
                 .isLast(reviewList.isLast())
                 .isFirst(reviewList.isFirst())
                 .totalPage(reviewList.getTotalPages())
