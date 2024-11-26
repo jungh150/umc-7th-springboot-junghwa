@@ -7,7 +7,10 @@ import umc.study.domain.User;
 import umc.study.domain.enums.MissionStatus;
 import umc.study.domain.mapping.UserMission;
 
+import java.util.Optional;
+
 public interface UserMissionRepository extends JpaRepository<UserMission, Long> {
 
+    Optional<UserMission> findById(Long id);
     Page<UserMission> findAllByUserAndStatus(User user, MissionStatus status, PageRequest pageRequest);
 }
