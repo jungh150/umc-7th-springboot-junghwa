@@ -42,7 +42,7 @@ public class UserMissionRestController {
             @Parameter(name = "userMissionId", description = "UserMission의 ID, PathVariable 입니다!")
     })
     public ApiResponse<UserMissionResponseDTO.UpdateUserMissionStatusResultDTO> completeUserMission(@PathVariable Long userMissionId) {
-        UserMissionResponseDTO.UpdateUserMissionStatusResultDTO response = userMissionCommandService.com(userMissionId);
+        UserMissionResponseDTO.UpdateUserMissionStatusResultDTO response = userMissionCommandService.completeUserMission(userMissionId);
         return ApiResponse.onSuccess(response);
     }
 }
