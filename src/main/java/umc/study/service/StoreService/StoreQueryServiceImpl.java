@@ -31,18 +31,18 @@ public class StoreQueryServiceImpl implements StoreQueryService {
     @Override
     public Page<Review> getReviewList(Long storeId, Integer page) {
 
-        Store store = storeRepository.findById(storeId).get();
+        Store store = storeRepository.findById(storeId)
+                .orElseThrow(() -> new IllegalArgumentException("Store not found"));
 
-        Page<Review> StorePage = reviewRepository.findAllByStore(store, PageRequest.of(page, 10));
-        return StorePage;
+        return reviewRepository.findAllByStore(store, PageRequest.of(page, 10));
     }
 
     @Override
     public Page<Mission> getMissionList(Long storeId, Integer page) {
 
-        Store store = storeRepository.findById(storeId).get();
+        Store store = storeRepository.findById(storeId)
+                .orElseThrow(() -> new IllegalArgumentException("Store not found"));
 
-        Page<Mission> StorePage = missionRepository.findAllByStore(store, PageRequest.of(page, 10));
-        return StorePage;
+        return missionRepository.findAllByStore(store, PageRequest.of(page, 10));
     }
 }
