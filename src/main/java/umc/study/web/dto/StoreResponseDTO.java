@@ -23,6 +23,17 @@ public class StoreResponseDTO {
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
+    public static class StoreReviewDTO {
+        String ownerName;
+        Float rate;
+        String content;
+        LocalDateTime createdAt;
+    }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
     public static class StoreReviewListDTO {
         List<StoreReviewDTO> reviewList;
         Integer listSize;
@@ -30,16 +41,5 @@ public class StoreResponseDTO {
         Long totalElements;
         Boolean isFirst;
         Boolean isLast;
-    }
-
-    @Builder
-    @Getter
-    @NoArgsConstructor
-    @AllArgsConstructor
-    public static class StoreReviewDTO {
-        String ownerName;
-        Float rate;
-        String content;
-        LocalDateTime createdAt;
     }
 }
