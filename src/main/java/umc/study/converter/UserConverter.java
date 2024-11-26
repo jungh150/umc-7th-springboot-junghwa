@@ -4,6 +4,7 @@ import org.springframework.data.domain.Page;
 import umc.study.domain.User;
 import umc.study.domain.enums.Gender;
 import umc.study.domain.mapping.Review;
+import umc.study.domain.mapping.UserMission;
 import umc.study.web.dto.UserRequestDTO;
 import umc.study.web.dto.UserResponseDTO;
 
@@ -42,7 +43,7 @@ public class UserConverter {
 
     public static UserResponseDTO.UserReviewDTO toUserReviewDTO(Review review) {
         return UserResponseDTO.UserReviewDTO.builder()
-                .storeName(review.getStore().getName()) // 가게 이름 포함
+                .storeName(review.getStore().getName())
                 .rate(review.getRate())
                 .content(review.getContent())
                 .createdAt(review.getCreatedAt())
@@ -61,6 +62,32 @@ public class UserConverter {
                 .totalElements(reviewPage.getTotalElements())
                 .isFirst(reviewPage.isFirst())
                 .isLast(reviewPage.isLast())
+                .build();
+    }
+
+    public static UserResponseDTO.UserMissionDTO toUserMissionDTO(UserMission userMission) {
+        return UserResponseDTO.UserMissionDTO.builder()
+                .missionId(userMission.getMission().getId())
+                .content(userMission.getMission().getContent())
+                .reward(userMission.getMission().getReward())
+                .deadline(userMission.getMission().getDeadline())
+                .storeName(userMission.getMission().getStore().getName())
+                .status(userMission.getStatus().toString())
+                .build();
+    }
+
+    public static UserResponseDTO.UserMissionListDTO toUserMissionListDTO(Page<UserMission> userMissionPage) {
+        List<UserResponseDTO.UserMissionDTO> missionDTOs = userMissionPage.stream()
+                .map(UserConverter::toUserMissionDTO)
+                .collect(Collectors.toList());
+
+        return UserResponseDTO.UserMissionListDTO.builder()
+                .missionList(missionDTOs)
+                .listSize(missionDTOs.size())
+                .totalPage(userMissionPage.getTotalPages())
+                .totalElements(userMissionPage.getTotalElements())
+                .isFirst(userMissionPage.isFirst())
+                .isLast(userMissionPage.isLast())
                 .build();
     }
 }
