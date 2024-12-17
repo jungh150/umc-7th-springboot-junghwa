@@ -11,7 +11,27 @@ import umc.study.service.UserService.UserCommandService;
 import umc.study.web.dto.UserRequestDTO;
 
 @Controller
+@RequiredArgsConstructor
 public class UserViewController {
+
+    private final UserCommandService userCommandService;
+
+    @PostMapping("/users/signup")
+    public String signupUser(@ModelAttribute("userJoinDto") UserRequestDTO.SignupDto request,
+                             BindingResult bindingResult,
+                             Model model) {
+        if (bindingResult.hasErrors()) {
+            return "signup";
+        }
+
+        try {
+            userCommandService.signupUser(request);
+            return "redirect:/login";
+        } catch (Exception e) {
+            model.addAttribute("error", e.getMessage());
+            return "signup";
+        }
+    }
 
     @GetMapping("/login")
     public String loginPage() {

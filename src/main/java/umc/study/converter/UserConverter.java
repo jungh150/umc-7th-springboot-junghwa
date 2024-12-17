@@ -32,11 +32,13 @@ public class UserConverter {
         };
 
         return User.builder()
+                .name(request.getName())
+                .email(request.getEmail())
                 .password(request.getPassword())
+                .gender(gender)
                 .address(request.getAddress())
                 .specAddress(request.getSpecAddress())
-                .gender(gender)
-                .name(request.getName())
+                .role(request.getRole())
                 .preferList(new ArrayList<>())
                 .build();
     }
