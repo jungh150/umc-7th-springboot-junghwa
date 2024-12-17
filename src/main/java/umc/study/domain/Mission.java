@@ -6,7 +6,7 @@ import umc.study.domain.mapping.UserMission;
 import umc.study.domain.common.BaseEntity;
 
 import jakarta.persistence.*;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +25,7 @@ public class Mission extends BaseEntity {
     @Column(nullable = false, length = 100)
     private String content;
 
-    private LocalDateTime deadline;
+    private LocalDate deadline;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "store_id")
