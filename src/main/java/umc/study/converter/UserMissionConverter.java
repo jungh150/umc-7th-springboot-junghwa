@@ -33,4 +33,12 @@ public class UserMissionConverter {
                 .mission(mission)
                 .build();
     }
+
+    public static UserMissionResponseDTO.UpdateUserMissionStatusResultDTO toUpdateUserMissionStatusResultDTO(UserMission userMission) {
+        return UserMissionResponseDTO.UpdateUserMissionStatusResultDTO.builder()
+                .userMissionId(userMission.getId())
+                .status(userMission.getStatus().toString())
+                .updatedAt(LocalDateTime.now())
+                .build();
+    }
 }

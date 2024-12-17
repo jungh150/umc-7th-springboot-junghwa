@@ -12,7 +12,7 @@ import java.util.List;
 
 @Component
 @RequiredArgsConstructor
-public class StoresExistValidator implements ConstraintValidator<ExistStores, List<Long>> {
+public class StoresExistValidator implements ConstraintValidator<ExistStores, Object> {
 
     private final StoreRepository storeRepository;
 
@@ -22,13 +22,37 @@ public class StoresExistValidator implements ConstraintValidator<ExistStores, Li
     }
 
     @Override
-    public boolean isValid(List<Long> storeIds, ConstraintValidatorContext context) {
-        if (storeIds == null || storeIds.isEmpty()) {
+    public boolean isValid(Object value, ConstraintValidatorContext context) {
+        if (value == null) {
             return true;
         }
 
+        if (value instanceof Long) {
+            return validateSingleStore((Long) value, context);
+        } else if (value instanceof List) {
+            return validateMultipleStores((List<?>) value, context);
+        }
+
+        return false; // 지원하지 않는 타입일 경우 유효하지 않음
+    }
+
+    private boolean validateSingleStore(Long storeId, ConstraintValidatorContext context) {
+        boolean exists = storeRepository.existsById(storeId);
+
+        if (!exists) {
+            context.disableDefaultConstraintViolation();
+            context.buildConstraintViolationWithTemplate(ErrorStatus.STORE_NOT_FOUND.toString())
+                    .addConstraintViolation();
+        }
+
+        return exists;
+    }
+
+    private boolean validateMultipleStores(List<?> storeIds, ConstraintValidatorContext context) {
         boolean isValid = storeIds.stream()
-                .allMatch(storeId -> storeRepository.existsById(storeId));
+                .filter(id -> id instanceof Long)
+                .map(id -> (Long) id)
+                .allMatch(storeRepository::existsById);
 
         if (!isValid) {
             context.disableDefaultConstraintViolation();
