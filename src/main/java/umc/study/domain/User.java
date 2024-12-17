@@ -6,6 +6,7 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import umc.study.domain.common.BaseEntity;
 import umc.study.domain.enums.Gender;
+import umc.study.domain.enums.Role;
 import umc.study.domain.enums.UserStatus;
 import umc.study.domain.mapping.Review;
 import umc.study.domain.mapping.UserMission;
@@ -29,10 +30,16 @@ public class User extends BaseEntity {
     private Long id;
 
     @Column(nullable = false, length = 20)
+    private String name;
+
+    @Column(nullable = false, unique = true)
+    private String email;
+
+    @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false, length = 20)
-    private String name;
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     @Enumerated(EnumType.STRING)
     @Column(columnDefinition = "VARCHAR(10)")
